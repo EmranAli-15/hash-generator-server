@@ -65,17 +65,18 @@ app.post('/', (req, res) => {
     }
     // End
     // Making hash password
-    const divideNum = Math.floor(20 / passArray.length) - 1;
+    const divideNum = Math.floor(20 / repeat.length);
     const hashTokenArr = getHashToken.split("");
     let initialIndex = divideNum;
-    for (let i = 0; i <= passArray.length - 1; i++) {
-        hashTokenArr[initialIndex] = repeat[i];
+    // console.log(divideNum)
+    for (let i = repeat.length - 1; i >= 0; i--) {
+        hashTokenArr[initialIndex - 1] = repeat[i];
         initialIndex = initialIndex + divideNum;
     }
     ;
     const hashPassword = hashTokenArr.join("");
     // End
-    return res.send({ name: hashPassword });
+    return res.send({ password: hashPassword });
 });
 app.get('/', (req, res) => {
     return res.send("Welcome to hash generator");
