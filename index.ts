@@ -18,14 +18,9 @@ type TBody = {
 app.post('/', (req, res) => {
 
     const { password, saltRound }: TBody = req.body;
+
     const lowerPass = password.toLowerCase();
     const passArray = lowerPass.split('');
-
-    if (passArray.length < 3 || passArray.length > 10) {
-        return res.status(404).json({
-            message: 'Required password 3-10 digit'
-        });
-    };
 
 
 
@@ -87,8 +82,6 @@ app.post('/', (req, res) => {
     const hashTokenArr = getHashToken!.split("");
     let initialIndex = divideNum;
 
-    // console.log(divideNum)
-
     for (let i = repeat.length - 1; i >= 0; i--) {
         hashTokenArr[initialIndex - 1] = repeat[i];
         initialIndex = initialIndex + divideNum;
@@ -102,8 +95,8 @@ app.post('/', (req, res) => {
 
 app.get('/', (req, res) => {
     return res.send("Welcome to hash generator");
-})
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
-})
+});
