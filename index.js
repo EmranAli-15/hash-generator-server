@@ -15,12 +15,6 @@ app.post('/', (req, res) => {
     const { password, saltRound } = req.body;
     const lowerPass = password.toLowerCase();
     const passArray = lowerPass.split('');
-    if (passArray.length < 3 || passArray.length > 10) {
-        return res.status(404).json({
-            message: 'Required password 3-10 digit'
-        });
-    }
-    ;
     // Getting the desired salt round
     const round = `ROUND${saltRound}`;
     const selectedRound = process.env[`${round}`];
@@ -68,7 +62,6 @@ app.post('/', (req, res) => {
     const divideNum = Math.floor(20 / repeat.length);
     const hashTokenArr = getHashToken.split("");
     let initialIndex = divideNum;
-    // console.log(divideNum)
     for (let i = repeat.length - 1; i >= 0; i--) {
         hashTokenArr[initialIndex - 1] = repeat[i];
         initialIndex = initialIndex + divideNum;
