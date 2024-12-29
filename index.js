@@ -15,8 +15,9 @@ app.post('/', (req, res) => {
     const { password, saltRound } = req.body;
     const lowerPass = password.toLowerCase();
     const passArray = lowerPass.split('');
+    const strSaltRound = saltRound.toString();
     // Getting the desired salt round
-    const round = `ROUND${saltRound}`;
+    const round = `ROUND${strSaltRound}`;
     const selectedRound = process.env[`${round}`];
     // End
     // Mechanism for repeated digit

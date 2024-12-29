@@ -21,11 +21,11 @@ app.post('/', (req, res) => {
 
     const lowerPass = password.toLowerCase();
     const passArray = lowerPass.split('');
+    const strSaltRound = saltRound.toString();
 
-
-
+    
     // Getting the desired salt round
-    const round = `ROUND${saltRound}`
+    const round = `ROUND${strSaltRound}`
     const selectedRound = process.env[`${round}`];
     // End
 
